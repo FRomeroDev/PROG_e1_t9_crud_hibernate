@@ -24,10 +24,10 @@ public class Ciudad {
 		super();
 	}
 
-	public Ciudad(String nombre, int idad) {
+	public Ciudad(String nombre, int numHbit) {
 		super();
 		this.nombre = nombre;
-		this.numHabi = idad;
+		this.numHabi = numHbit;
 	}
 
 	public int getCodigo() {
