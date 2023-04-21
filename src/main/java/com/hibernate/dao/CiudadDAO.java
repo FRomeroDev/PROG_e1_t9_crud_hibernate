@@ -36,12 +36,12 @@ public class CiudadDAO {
 		}
 	}
 
-	public void deleteCiudad(int id) {
+	public void deleteCiudad(int codigo) {
 		Transaction transaction = null;
 		Ciudad p = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			p = session.get(Ciudad.class, id);
+			p = session.get(Ciudad.class, codigo);
 			session.remove(p);
 			transaction.commit();
 		} catch (Exception e) {
@@ -51,12 +51,12 @@ public class CiudadDAO {
 		}
 	}
 
-	public Ciudad selectCiudadById(int id) {
+	public Ciudad selectCiudadById(int codigo) {
 		Transaction transaction = null;
 		Ciudad p = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			p = session.get(Ciudad.class, id);
+			p = session.get(Ciudad.class, codigo);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -68,17 +68,17 @@ public class CiudadDAO {
 
 	public List<Ciudad> selectAllCiudads() {
 		Transaction transaction = null;
-		List<Ciudad> personas = null;
+		List<Ciudad> ciudades = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			personas = session.createQuery("FROM Ciudad", Ciudad.class).getResultList();
+			ciudades = session.createQuery("FROM Ciudad", Ciudad.class).getResultList();
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return personas;
+		return ciudades;
 	}
 
 }
